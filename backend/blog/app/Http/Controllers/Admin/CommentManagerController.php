@@ -17,7 +17,7 @@ class CommentManagerController extends Controller
     public function index()
     {
         //
-        $articleComments =Article::with('comments')->withCount('comments')->paginate(20);
+        $articleComments =Article::whereNotIn('is_accept',[0])->with('comments')->withCount('comments')->orderBy('id','desc')->paginate(20);
         return view('admin.comment')->with('articleComments', $articleComments);
     }
 

@@ -17,7 +17,7 @@ class RateManagerController extends Controller
     public function index()
     {
         //
-        $rateArticle = Article::with('rates.user')->paginate(20);
+        $rateArticle = Article::whereNotIn('is_accept',[0])->with('rates.user')->orderBy('id', 'desc')->paginate(20);
         foreach ($rateArticle as $article) {
             foreach ($article->rates as $rate) {
                 if($rate->like === 1) {
