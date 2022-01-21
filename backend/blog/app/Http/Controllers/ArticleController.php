@@ -81,12 +81,16 @@ class ArticleController extends Controller
         //
         $rate = $article->load(['rates','tags','user'])->loadCount('comments');
         $postContact = Article::inRandomOrder()->where('category_id','=',$article->category_id)
-                        ->with('user')
+                        ->with('user',function($query){
+                            $query->whereNotIn('blocked',[1]);
+                        })
                         ->withCount('comments')
                         ->whereNotIn('id',[$article->id])
                         ->take(4)
                         ->get();
-        $postNew = Article::whereNotIn('id',[$article->id])->with('user')
+        $postNew = Article::whereNotIn('id',[$article->id])->with('user',function($query){
+            $query->whereNotIn('blocked',[1]);
+        })
                         ->withCount('comments')->orderByDesc('id')->take(10)->get();
         return response()->json([
                             'article' => $rate,
