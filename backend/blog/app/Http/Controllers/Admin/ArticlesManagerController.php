@@ -98,6 +98,13 @@ class ArticlesManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function acceptArticle(Article $article) {
+        if(Article::where([
+            'title'=>$article->title,
+            'content'=>$article->content,
+            'is_accept'=>true
+        ])->exists()) {
+            return redirect('/admin/article');
+        }
         $article->is_accept = true;
         $article->save();
         return redirect('/admin/article');

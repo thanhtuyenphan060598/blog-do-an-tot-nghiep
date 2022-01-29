@@ -19,26 +19,28 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Dang nhap bang tai khoan google
 Route::post('sociallogin/{provider}',[AuthController::class,'SocialSignup']);
 Route::get('auth/{provider}/callback',[OutController::class,'index'])->where('provider', '.*');
 
-
+//RESTful API de lay bai viet , chuyen muc , the
 Route::resource('/articles', ArticleController::class);
 Route::resource('/categories', CategoryController::class);
 Route::resource('/tag', TagController::class);
 
 
-
+//Dang nhap va dang kí, dăng xuat
 Route::post('/register',[ApiUserController::class,'register']);
 Route::post('/login',[ApiUserController::class,'login']);
 Route::post('/logout',[ApiUserController::class,'logout']);
 
+//Them , xoa ,sua binh luan va danh gia
 Route::post('/comment/delete/{comment}',[ApiUserController::class,'commentDelete']);
 Route::post('/comment/edit/{comment}',[ApiUserController::class,'commentEdit']);
 Route::post('/delete/like/{user}',[ApiUserController::class,'deleteLike']);
 Route::post('/upload/img/{user}',[ApiUserController::class,'uploadImg']);
 
-
+// Lay ra danh gia
 Route::get('/review/rate/{article}',[ApiUserController::class,'reviewGet']);
 Route::get('/articles/user/{user}',[ApiUserController::class,'userArticle']);
 Route::get('/view/post',[ApiUserController::class,'getPostView']);

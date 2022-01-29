@@ -44,6 +44,9 @@ class TagManagerController extends Controller
     public function store(Request $request)
     {
         //
+        if(Tag::where('name_tag','=',$request->tag_admin)->exists()) {
+            return redirect('/admin/tag_admin');
+        }
         Tag::create([
             'name_tag' => $request->tag_admin
         ]);

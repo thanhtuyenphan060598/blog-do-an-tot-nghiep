@@ -44,7 +44,9 @@ class CategoriesManagerController extends Controller
     public function store(Request $request)
     {
         //
-
+        if(Category::where('name_category','=',$request->category)->exists()) {
+            return redirect('/admin/category');
+        }
         Category::create([
             'name_category' => $request->category
         ]);
