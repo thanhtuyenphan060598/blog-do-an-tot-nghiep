@@ -265,13 +265,21 @@ export default {
         this.getRate()
         this.checkUserLike()
     },
+    watch: {
+        articleShow() {
+            this.userLike = null
+            this.getRate()
+            this.checkUserLike()
+        }
+    },
 //=========================================================
     components : {
         CommentList,
         PostContacts,
         PostNew,
         Login
-    }
+    },
+
 }
 </script>
 
