@@ -5,7 +5,7 @@
             <h4 class="mb-0">Tags : </h4>
             <a href="#" 
             class="el-tag tag el-tag--info el-tag--mini ml-2"
-            v-for="(tag,index) in item"
+            v-for="(tag,index) in item.tags"
             :key="index"
             style="font-size:15px !important;"
             > 
@@ -32,7 +32,6 @@
             :key="index"
             :comment="comment"
             />
-            
         </div>
     </div>
 </template>
@@ -103,6 +102,13 @@ export default {
     //=========================================================
     components : {
         Comment
+    },
+    //=========================================================
+    watch : {
+        item() {
+            this.listComment = null
+            this.getComment()
+        }
     },
 //=========================================================
     mounted() {

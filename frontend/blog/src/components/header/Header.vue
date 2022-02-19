@@ -15,8 +15,8 @@
                         
                        
                     </ul>
+                    <span class="search-mobile" type="button"><i class="fa fa-search"></i></span>
                     <div class="topnav search-container">
-                        
                             <input type="text" v-model="search" placeholder="Search.." name="search">
                             <button @click="searchPost()" type="button"><i class="fa fa-search"></i></button>
                         
@@ -57,6 +57,7 @@
                             </li>
                         </span>
                         <span class="nav navbar-nav flex-row float-right" v-else>
+
                             <li class="nav-item">
                                 <router-link class="nav-link pr-3 " :to="{name:'login'}">Sign In</router-link>
                             </li>
